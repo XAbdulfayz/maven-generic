@@ -1,5 +1,6 @@
-package com.xa.MapperAndGeneric.dto;
+package com.xa.MapperAndGeneric.dto.authUser;
 
+import com.xa.MapperAndGeneric.dto.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+public class AuthUserCreateDto extends BaseDto {
 
-public class AuthUserUpdateDto extends BaseDto{
-
-    private Long id;
     private String username;
     private String password;
     private String email;

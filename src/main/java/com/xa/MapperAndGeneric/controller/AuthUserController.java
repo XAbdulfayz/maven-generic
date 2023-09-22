@@ -1,8 +1,8 @@
 package com.xa.MapperAndGeneric.controller;
 
-import com.xa.MapperAndGeneric.dto.AuthUserCreateDto;
-import com.xa.MapperAndGeneric.dto.AuthUserGetDto;
-import com.xa.MapperAndGeneric.dto.AuthUserUpdateDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserCreateDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserGetDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserUpdateDto;
 import com.xa.MapperAndGeneric.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 

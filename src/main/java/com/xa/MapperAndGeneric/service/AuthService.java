@@ -1,15 +1,15 @@
 package com.xa.MapperAndGeneric.service;
 
-import com.xa.MapperAndGeneric.dto.AuthUserCreateDto;
-import com.xa.MapperAndGeneric.dto.AuthUserGetDto;
-import com.xa.MapperAndGeneric.dto.AuthUserUpdateDto;
-import com.xa.MapperAndGeneric.dto.BaseDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserCreateDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserGetDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserUpdateDto;
 import com.xa.MapperAndGeneric.entity.AuthUser;
 import com.xa.MapperAndGeneric.mapper.authUser.AuthUserMapper;
 import com.xa.MapperAndGeneric.repository.AuthUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -34,7 +34,13 @@ public class AuthService {
 
     public AuthUserGetDto update(AuthUserUpdateDto dto){
 
-        return mapper.fromEntity(repository.save(mapper.fromUpdateDto(dto)));
+        Optional<AuthUser> byId = repository.findById(dto.getId());
+
+        return mapper.fromEntity(
+                repository.save(
+                        mapper.fromUpdateDto(dto, byId.get() )
+                )
+        );
 
     }
 
