@@ -11,6 +11,4 @@ import org.mapstruct.Mapper;
 public interface AuthUserMapper extends GenericMapper
         <AuthUserCreateDto, AuthUserUpdateDto, AuthUserGetDto, AuthUser> {
 
-
-
 }
