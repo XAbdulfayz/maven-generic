@@ -23,8 +23,12 @@ public class PostController {
 
 
     @GetMapping("get/")
-    public List<PostGetDto> get(){
+    public List<PostGetDto> getAll(){
         return service.list();
+    }
+    @GetMapping("get/{id}")
+    public PostGetDto get(@PathVariable Long id){
+        return service.get(id);
     }
 
 

@@ -6,6 +6,8 @@ import com.xa.MapperAndGeneric.dto.authUser.AuthUserUpdateDto;
 import com.xa.MapperAndGeneric.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("api/v1/users/")
@@ -19,15 +21,14 @@ public class AuthUserController {
 
 
     @GetMapping("/get")
-    @ResponseBody
-    public AuthUserGetDto getUser() {
+    public List<AuthUserGetDto> getAll() {
        return service.list();
     }
 
-//    @GetMapping("get/")
-//    public List<AuthUserGetDto> get() {
-//        return service.list();
-//    }
+    @GetMapping("get/{id}")
+    public AuthUserGetDto get(@PathVariable Long id) {
+        return service.get(id);
+    }
 
     @PutMapping("update/")
     public AuthUserGetDto update(@RequestBody AuthUserUpdateDto updateDto){

@@ -8,6 +8,7 @@ import com.xa.MapperAndGeneric.mapper.authUser.AuthUserMapper;
 import com.xa.MapperAndGeneric.repository.AuthUserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,7 +24,10 @@ public class AuthService {
     }
 
 
-
+    public AuthUserGetDto get(Long id){
+        Optional<AuthUser> result = repository.findById(id);
+        return mapper.fromEntity(result.get());
+    }
 
     public AuthUserGetDto create(AuthUserCreateDto dto) {
         AuthUser authUser = mapper.fromCreateDto(dto);
@@ -43,9 +47,9 @@ public class AuthService {
 
     }
 
-    public AuthUserGetDto list() {
+    public List<AuthUserGetDto> list() {
 
-       return (AuthUserGetDto) mapper.fromListEntity(  repository.findAll() );
+       return mapper.fromListEntity(  repository.findAll() );
 
     }
 

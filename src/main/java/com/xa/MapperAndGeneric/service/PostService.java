@@ -51,6 +51,11 @@ public class PostService {
         return mapper.fromListEntity(repository.findAll());
     }
 
+    public PostGetDto get(Long id){
+        Optional<Post> result = repository.findById(id);
+        return mapper.fromEntity(result.get());
+    }
+
 
 
 }
