@@ -13,7 +13,6 @@ import java.util.List;
 public class PostController {
 
 
-
     private final PostService service;
 
     public PostController(PostService service) {
@@ -21,26 +20,25 @@ public class PostController {
     }
 
 
-
     @GetMapping("get/")
-    public List<PostGetDto> getAll(){
+    public List<PostGetDto> getAll() {
         return service.list();
     }
-    @GetMapping("get/{id}")
-    public PostGetDto get(@PathVariable Long id){
-        return service.get(id); // Sevinch
-    }
 
+    @GetMapping("get/{id}")
+    public PostGetDto get(@PathVariable Long id) {
+        return service.get(id);
+    }
 
 
     @PutMapping("update/")
-    public PostGetDto update(@RequestBody PostUpdateDto updateDto){
+    public PostGetDto update(@RequestBody PostUpdateDto updateDto) {
         return service.update(updateDto);
     }
 
 
     @PostMapping("create/")
-    public PostGetDto create( @RequestBody PostCreateDto createDto){
+    public PostGetDto create(@RequestBody PostCreateDto createDto) {
         return service.create(createDto);
     }
 

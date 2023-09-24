@@ -22,7 +22,7 @@ public class AuthUserController {
 
     @GetMapping("/get")
     public List<AuthUserGetDto> getAll() {
-       return service.list();
+        return service.list();
     }
 
     @GetMapping("get/{id}")
@@ -31,12 +31,12 @@ public class AuthUserController {
     }
 
     @PutMapping("update/")
-    public AuthUserGetDto update(@RequestBody AuthUserUpdateDto updateDto){
+    public AuthUserGetDto update(@RequestBody AuthUserUpdateDto updateDto) {
         return service.update(updateDto);
     }
 
     @PostMapping("create/")
-    public AuthUserGetDto create(@RequestBody AuthUserCreateDto createDto){
+    public AuthUserGetDto create(@RequestBody AuthUserCreateDto createDto) {
         return service.create(createDto);
     }
 
