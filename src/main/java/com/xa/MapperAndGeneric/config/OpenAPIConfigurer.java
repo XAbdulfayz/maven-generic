@@ -13,23 +13,15 @@ import java.util.List;
 @Configuration
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", havingValue = "true", matchIfMissing = true)
-
 public class OpenAPIConfigurer {
-
     private static final String SCHEMA = "Bearer";
-
-    private static final String BEARER_FORMAT = "JNT";
-
+    private static final String BEARER_FORMAT = "JWT"; // Json Web Token
     private static final String SECURITY_SCHEMA_NAME = "Project security schema";
-
 
     @Bean
     public OpenAPI api() {
-        return new OpenAPI().schemaRequirement(SECURITY_SCHEMA_NAME,
-                getSecurityScheme()).security(getSecurityRequirements());
-
+        return new OpenAPI().schemaRequirement(SECURITY_SCHEMA_NAME, getSecurityScheme()).security(getSecurityRequirements());
     }
-
 
     private SecurityScheme getSecurityScheme() {
         SecurityScheme scheme = new SecurityScheme();
@@ -40,27 +32,10 @@ public class OpenAPIConfigurer {
         return scheme;
     }
 
-
-
-    private List<SecurityRequirement> getSecurityRequirements(){
+    private List<SecurityRequirement> getSecurityRequirements() {
         SecurityRequirement requirement = new SecurityRequirement();
         requirement.addList(SECURITY_SCHEMA_NAME);
         return List.of(requirement);
     }
 
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-

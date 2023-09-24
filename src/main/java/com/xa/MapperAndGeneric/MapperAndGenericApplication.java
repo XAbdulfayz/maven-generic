@@ -9,12 +9,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @OpenAPIDefinition
 @SpringBootApplication
 @EnableTransactionManagement
-
-
 public class MapperAndGenericApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(MapperAndGenericApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(MapperAndGenericApplication.class, args);
+	}
 
 }

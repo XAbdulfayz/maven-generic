@@ -37,9 +37,9 @@ public class PostController {
     }
 
 
-    @PostMapping("create/")
-    public PostGetDto create(@RequestBody PostCreateDto createDto) {
-        return service.create(createDto);
+    @PostMapping("create/{userId}")
+    public PostGetDto create(@PathVariable Long userId, @RequestBody PostCreateDto createDto) {
+        return service.create(createDto, userId);
     }
 
 }

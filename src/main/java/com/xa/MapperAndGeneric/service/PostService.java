@@ -4,8 +4,10 @@ package com.xa.MapperAndGeneric.service;
 import com.xa.MapperAndGeneric.dto.post.PostCreateDto;
 import com.xa.MapperAndGeneric.dto.post.PostGetDto;
 import com.xa.MapperAndGeneric.dto.post.PostUpdateDto;
+import com.xa.MapperAndGeneric.entity.AuthUser;
 import com.xa.MapperAndGeneric.entity.Post;
 import com.xa.MapperAndGeneric.mapper.post.PostMapper;
+import com.xa.MapperAndGeneric.repository.AuthUserRepository;
 import com.xa.MapperAndGeneric.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +19,30 @@ public class PostService {
 
 
     private final PostRepository repository;
+    private final AuthUserRepository authUserRepository;
 
     private final PostMapper mapper;
 
 
-    public PostService(PostRepository repository, PostMapper mapper) {
+    public PostService(PostRepository repository, AuthUserRepository authUserRepository, PostMapper mapper) {
         this.repository = repository;
+        this.authUserRepository = authUserRepository;
         this.mapper = mapper;
     }
 
 
-    public PostGetDto create(PostCreateDto dto) {
+    public PostGetDto create(PostCreateDto dto, Long userId) {
         Post post = mapper.fromCreateDto(dto);
         Post result = repository.save(post);
+
+        Optional<AuthUser> resultUser = authUserRepository.findById(userId);
+        AuthUser authUser = resultUser.get();
+        List<Post> posts = authUser.getPosts();
+        posts.add(result);
+        authUser.setPosts(posts);
+        authUserRepository.save(authUser);
+
+
         return mapper.fromEntity(result);
     }
 
