@@ -2,16 +2,42 @@ package com.xa.MapperAndGeneric.controller;
 
 import com.xa.MapperAndGeneric.dto.post.PostCreateDto;
 import com.xa.MapperAndGeneric.dto.post.PostGetDto;
+import com.xa.MapperAndGeneric.dto.post.PostUpdateDto;
+import com.xa.MapperAndGeneric.service.PostService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/post/")
 public class PostController {
 
-    @PostMapping("create/{userId}")
-    public PostGetDto create(@PathVariable Long userId, @RequestBody PostCreateDto dto){
 
-        return null;
+
+    private final PostService service;
+
+    public PostController(PostService service) {
+        this.service = service;
+    }
+
+
+
+    @GetMapping("get/")
+    public List<PostGetDto> get(){
+        return service.list();
+    }
+
+
+
+    @PutMapping("update/")
+    public PostGetDto update(@RequestBody PostUpdateDto updateDto){
+        return service.update(updateDto);
+    }
+
+
+    @PostMapping("create/")
+    public PostGetDto create( @RequestBody PostCreateDto createDto){
+        return service.create(createDto);
     }
 
 }

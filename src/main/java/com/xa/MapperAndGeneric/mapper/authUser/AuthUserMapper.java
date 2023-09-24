@@ -1,5 +1,4 @@
 package com.xa.MapperAndGeneric.mapper.authUser;
-
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserCreateDto;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserGetDto;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserUpdateDto;
@@ -13,3 +12,4 @@ public interface AuthUserMapper extends GenericMapper
         <AuthUserCreateDto, AuthUserUpdateDto, AuthUserGetDto, AuthUser> {
 
 }
+

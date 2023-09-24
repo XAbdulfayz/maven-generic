@@ -8,7 +8,6 @@ import com.xa.MapperAndGeneric.mapper.authUser.AuthUserMapper;
 import com.xa.MapperAndGeneric.repository.AuthUserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,9 +43,9 @@ public class AuthService {
 
     }
 
-    public List<AuthUserGetDto> list() {
+    public AuthUserGetDto list() {
 
-       return mapper.fromListEntity(  repository.findAll() );
+       return (AuthUserGetDto) mapper.fromListEntity(  repository.findAll() );
 
     }
 
