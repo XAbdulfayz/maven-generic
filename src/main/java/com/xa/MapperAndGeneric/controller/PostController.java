@@ -27,7 +27,7 @@ public class PostController {
 
     @GetMapping("get/{id}")
     public PostGetDto get(@PathVariable Long id) {
-        return service.get(id); //Ravil
+        return service.get(id);
     }
 
 
