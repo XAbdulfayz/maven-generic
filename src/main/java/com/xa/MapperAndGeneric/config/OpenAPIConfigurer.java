@@ -25,7 +25,8 @@ public class OpenAPIConfigurer {
 
     @Bean
     public OpenAPI api() {
-        return new OpenAPI().schemaRequirement(SECURITY_SCHEMA_NAME, getSecurityScheme()).security(getSecurityRequirements());
+        return new OpenAPI().schemaRequirement(SECURITY_SCHEMA_NAME,
+                getSecurityScheme()).security(getSecurityRequirements());
 
     }
 
