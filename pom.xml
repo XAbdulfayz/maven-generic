@@ -62,6 +62,26 @@
 			<version>1.5.5.Final</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-common -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-common</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.2.15</version>
+		</dependency>
+
+
 
 	</dependencies>
 
