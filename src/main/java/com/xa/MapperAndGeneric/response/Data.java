@@ -19,5 +19,19 @@ public class Data<T> {
         this.isSuccess = isSuccess;
     }
 
-    
+    public Data(T body) {
+        this.isSuccess = true;
+        this.body = body;
+    }
+
+    public Data(T body, Long totalCount) {
+        this.isSuccess = true;
+        this.body = body;
+        this.totalCount = totalCount;
+    }
+
+    public Data(APIErrorDTO error) {
+        this.isSuccess = false;
+        this.error = error;
+    }
 }
