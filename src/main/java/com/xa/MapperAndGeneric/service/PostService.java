@@ -1,17 +1,21 @@
 package com.xa.MapperAndGeneric.service;
 
 
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserCreateDto;
+import com.xa.MapperAndGeneric.dto.authUser.AuthUserGetDto;
 import com.xa.MapperAndGeneric.dto.post.PostCreateDto;
 import com.xa.MapperAndGeneric.dto.post.PostGetDto;
 import com.xa.MapperAndGeneric.dto.post.PostUpdateDto;
 import com.xa.MapperAndGeneric.entity.AuthUser;
 import com.xa.MapperAndGeneric.entity.Post;
+import com.xa.MapperAndGeneric.exception.NotFoundException;
 import com.xa.MapperAndGeneric.mapper.post.PostMapper;
 import com.xa.MapperAndGeneric.repository.AuthUserRepository;
 import com.xa.MapperAndGeneric.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -41,10 +45,15 @@ public class PostService {
         posts.add(result);
         authUser.setPosts(posts);
         authUserRepository.save(authUser);
-
-
+        if (Objects.isNull(result)) {
+            throw new RuntimeException("Could not create post");
+        }
         return mapper.fromEntity(result);
+
+
+
     }
+
 
 
     public PostGetDto update(PostUpdateDto dto) {
@@ -66,7 +75,11 @@ public class PostService {
 
     public PostGetDto get(Long id) {
         Optional<Post> result = repository.findById(id);
-        return mapper.fromEntity(result.get());
+        if (result.isPresent()) {
+            return mapper.fromEntity(result.get());
+        }
+        throw new NotFoundException("User not found: " + id);
     }
+
 
 }

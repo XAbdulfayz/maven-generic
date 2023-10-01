@@ -15,4 +15,5 @@ public class MapperAndGenericApplication {
 		SpringApplication.run(MapperAndGenericApplication.class, args);
 	}
 
+
 }
