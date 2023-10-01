@@ -3,7 +3,10 @@ package com.xa.MapperAndGeneric.controller;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserCreateDto;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserGetDto;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserUpdateDto;
+import com.xa.MapperAndGeneric.response.Data;
 import com.xa.MapperAndGeneric.service.AuthService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +24,13 @@ public class AuthUserController {
 
 
     @GetMapping("/get")
-    public List<AuthUserGetDto> getAll() {
-        return service.list();
+    public ResponseEntity<Data<List<AuthUserGetDto>>> getAll() {
+        return new ResponseEntity<>(new Data<>(service.list()), HttpStatus.OK );
     }
 
     @GetMapping("get/{id}")
-    public AuthUserGetDto get(@PathVariable Long id) {
-        return service.get(id);
+    public ResponseEntity<Data<AuthUserGetDto>> get(@PathVariable Long id) {
+        return new ResponseEntity<>(new Data<>(service.get(id)), HttpStatus.OK );
     }
 
     @PutMapping("update/")
