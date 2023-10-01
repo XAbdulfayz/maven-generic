@@ -34,13 +34,13 @@ public class AuthUserController {
     }
 
     @PutMapping("update/")
-    public AuthUserGetDto update(@RequestBody AuthUserUpdateDto updateDto) {
-        return service.update(updateDto);
+    public ResponseEntity<Data<AuthUserGetDto>> update(@RequestBody AuthUserUpdateDto updateDto) {
+        return new ResponseEntity<>(new Data<>(service.update(updateDto)), HttpStatus.OK);
     }
 
     @PostMapping("create/")
-    public AuthUserGetDto create(@RequestBody AuthUserCreateDto createDto) {
-        return service.create(createDto);
+    public ResponseEntity<Data<AuthUserGetDto>> create(@RequestBody AuthUserCreateDto createDto) {
+        return new ResponseEntity<>(new Data<>(service.create(createDto)), HttpStatus.OK);
     }
 
 }
