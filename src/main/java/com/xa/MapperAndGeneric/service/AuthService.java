@@ -4,11 +4,13 @@ import com.xa.MapperAndGeneric.dto.authUser.AuthUserCreateDto;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserGetDto;
 import com.xa.MapperAndGeneric.dto.authUser.AuthUserUpdateDto;
 import com.xa.MapperAndGeneric.entity.AuthUser;
+import com.xa.MapperAndGeneric.exception.NotFoundException;
 import com.xa.MapperAndGeneric.mapper.authUser.AuthUserMapper;
 import com.xa.MapperAndGeneric.repository.AuthUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -26,12 +28,18 @@ public class AuthService {
 
     public AuthUserGetDto get(Long id){
         Optional<AuthUser> result = repository.findById(id);
-        return mapper.fromEntity(result.get());
+        if(result.isPresent()) {
+            return mapper.fromEntity(result.get());
+        }
+        throw new NotFoundException("User not found: "+id);
     }
 
     public AuthUserGetDto create(AuthUserCreateDto dto) {
         AuthUser authUser = mapper.fromCreateDto(dto);
         AuthUser result = repository.save(authUser);
+        if (Objects.isNull(result)) {
+            throw new RuntimeException("Couldn't create user");
+        }
         return mapper.fromEntity(result);
     }
 
